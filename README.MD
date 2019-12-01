@@ -9,5 +9,5 @@ I'm challenging myself this year by learning to solve the puzzles in python.
 
 Run the program by:
 ```bash
-$ python day1.py
+$ python day1/day1.py
 ```
