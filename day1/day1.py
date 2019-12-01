@@ -1,3 +1,5 @@
+# Solution for day1 of advent of code 2019
+
 import math
 
 lines = [line.rstrip('\n') for line in open('input.txt')]
