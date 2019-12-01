@@ -2,7 +2,7 @@
 
 import math
 
-lines = [line.rstrip('\n') for line in open('input.txt')]
+lines = [line.rstrip('\n') for line in open('day1/input.txt')]
 
 # part1
 fuel = 0
