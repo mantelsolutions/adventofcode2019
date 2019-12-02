@@ -7,7 +7,12 @@ I'm challenging myself this year by learning to solve the puzzles in python.
 
 # Day 1
 
-Run the program by:
+Run the program:
 ```bash
 $ python day1/day1.py
+```
+# Day 2
+Run the program:
+```bash
+$ python day2/day2.py
 ```

@@ -19,10 +19,13 @@ def multiplyOperation(values, opCodeIndex):
     values[values[opCodeIndex+3]] = operant1 * operant2
 
 def getCurrentOpCodeIndex(values, codeAndArgumentWidth, numberOfCodesEvaluated):
+    """Computes the current opCode index"""
     return codeAndArgumentWidth * numberOfCodesEvaluated
 
 
 def getResult(values):
+    """Calculates the result for the memory operations"""
+
     numberOfCodesEvaluated = 0
     codeAndArgumentWidth = 4
     haltCodeFound = False
@@ -56,6 +59,8 @@ print("Result of part1: " + str(valuesPart1[0]))
 assert 5098658 == resultPart1
 
 # part2
+
+# Initialize
 valuesPart2 = origValues.copy()
 
 noun = 0
@@ -76,11 +81,14 @@ while not desiredOutputFound:
     if currentResult == desiredOutput:
         desiredOutputFound = True
     else:
+        # keep guessing the verb & noun
         if verb >= 99:
             noun += 1
             verb = 0
         else:
             verb += 1  
+        
+        # reset the "memory"
         valuesPart2 = origValues.copy()
 
 print("Result part2: " + str(100 * valuesPart2[1] + valuesPart2[2]))
