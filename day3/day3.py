@@ -167,4 +167,4 @@ for coordinate in matchingCoordinates:
     listOfStepsToIntersections.append(stepsFirst+stepsSecond)
 
 resultPart2 = min(listOfStepsToIntersections)
-print("Result part1: " + str(resultPart2))
+print("Result part2: " + str(resultPart2))
