@@ -62,7 +62,9 @@ currentY = 0
 
 crossCoordinates = [[]]
 
-coordinatesFirst = [[]]
+coordinatesFirst = []
+numberOfSteps = 0
+coordsToStepsMapFirst = {}
 
 for step in stepsFirstWire:
     if step[0] == 'U':
@@ -70,25 +72,33 @@ for step in stepsFirstWire:
         steps = int(step.strip('U'))
         for step in range(0, steps):
             currentY -= 1
-            coordinatesFirst.append((currentX, currentY))
+            coordinatesFirst.append(tuple((currentX,currentY)))
+            numberOfSteps += 1
+            coordsToStepsMapFirst[tuple((currentX,currentY))] = numberOfSteps
     elif step[0] == 'D':
         print("Down step found: " + str(step[0]))
         steps = int(step.strip('D'))
         for step in range(0, steps):
             currentY += 1
-            coordinatesFirst.append((currentX, currentY))
+            coordinatesFirst.append(tuple((currentX,currentY)))
+            numberOfSteps += 1
+            coordsToStepsMapFirst[tuple((currentX,currentY))] = numberOfSteps
     elif step[0] == 'L':
         print("Left step found: " + str(step[0]))
         steps = int(step.strip('L'))
         for step in range(0, steps):
             currentX -= 1
-            coordinatesFirst.append((currentX, currentY))
+            coordinatesFirst.append(tuple((currentX,currentY)))
+            numberOfSteps += 1
+            coordsToStepsMapFirst[tuple((currentX,currentY))] = numberOfSteps
     elif step[0] == 'R':
         print("Left step found: " + str(step[0]))
         steps = int(step.strip('R'))
         for step in range(0, steps):
             currentX += 1
-            coordinatesFirst.append((currentX, currentY))
+            coordinatesFirst.append(tuple((currentX,currentY)))
+            numberOfSteps += 1
+            coordsToStepsMapFirst[tuple((currentX,currentY))] = numberOfSteps
     else:
         print("ERROR unknown step type: " + str(step[0]))
 
@@ -97,37 +107,48 @@ currentY = 0
 
 coordinatesSecond = []
 
+numberOfSteps = 0
+coordsToStepsMapSecond = {}
+
 for step in stepsSecondWire:
     if step[0] == 'U':
         print("Up step found: " + step)
         steps = int(step.strip('U'))
         for step in range(0, steps):
             currentY -= 1
-            coordinatesSecond.append((currentX, currentY))
+            coordinatesSecond.append(tuple((currentX, currentY)))
+            numberOfSteps += 1
+            coordsToStepsMapSecond[tuple((currentX,currentY))] = numberOfSteps
     elif step[0] == 'D':
         print("Down step found: " + str(step[0]))
         steps = int(step.strip('D'))
         for step in range(0, steps):
             currentY += 1
-            coordinatesSecond.append((currentX, currentY))
+            coordinatesSecond.append(tuple((currentX,currentY)))
+            numberOfSteps += 1
+            coordsToStepsMapSecond[tuple((currentX,currentY))] = numberOfSteps
     elif step[0] == 'L':
         print("Left step found: " + str(step[0]))
         steps = int(step.strip('L'))
         for step in range(0, steps):
             currentX -= 1
-            coordinatesSecond.append((currentX, currentY))
+            coordinatesSecond.append(tuple((currentX,currentY)))
+            numberOfSteps += 1
+            coordsToStepsMapSecond[tuple((currentX,currentY))] = numberOfSteps
     elif step[0] == 'R':
         print("Left step found: " + str(step[0]))
         steps = int(step.strip('R'))
         for step in range(0, steps):
             currentX += 1
-            coordinatesSecond.append((currentX, currentY))
+            coordinatesSecond.append(tuple((currentX, currentY)))
+            numberOfSteps += 1
+            coordsToStepsMapSecond[tuple((currentX,currentY))] = numberOfSteps
     else:
         print("ERROR unknown step type: " + str(step[0]))
 
 print(len(coordinatesFirst))
 
-matchingCoordinates = [x for x in coordinatesFirst if x in coordinatesSecond]
+matchingCoordinates = [x for x in coordinatesFirst if x in coordsToStepsMapSecond]
 
 print(matchingCoordinates)
 
@@ -139,39 +160,11 @@ for coordinate in matchingCoordinates:
 resultPart1 = min(distances)
 print("Result part1: " + str(resultPart1))
 
-# for step in stepsSecondWire:
-#     if step[0] == 'U':
-#         print("Up step found: " + step)
-#         steps = int(step.strip('U'))
-#         for step in range(0, steps):
-#             currentY -= 1
-#             if(field[currentX][currentY] != "."):
-#                 print("found cross")
-#                 field[currentX][currentY] = "X"
-#                 crossCoordinates.append((currentX,currentY))
-#             else:
-#                 field[currentX][currentY] = "|"
-#     elif step[0] == 'D':
-#         print("Down step found: " + str(step[0]))
-#         steps = int(step.strip('D'))
-#         for step in range(0, steps):
-#             currentY += 1
-#             field[currentX][currentY] = "|"
-#     elif step[0] == 'L':
-#         print("Left step found: " + str(step[0]))
-#         steps = int(step.strip('L'))
-#         for step in range(0, steps):
-#             currentX -= 1
-#             field[currentX][currentY] = "-"
-#     elif step[0] == 'R':
-#         print("Left step found: " + str(step[0]))
-#         steps = int(step.strip('R'))
-#         for step in range(0, steps):
-#             currentX += 1
-#             field[currentX][currentY] = "-"
-#     else:
-#         print("ERROR unknown step type: " + str(step[0]))
+listOfStepsToIntersections = []
+for coordinate in matchingCoordinates:
+    stepsFirst = coordsToStepsMapFirst.get(coordinate)
+    stepsSecond = coordsToStepsMapSecond.get(coordinate)
+    listOfStepsToIntersections.append(stepsFirst+stepsSecond)
 
-
-
-# print(crossCoordinates)
+resultPart2 = min(listOfStepsToIntersections)
+print("Result part1: " + str(resultPart2))
