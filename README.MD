@@ -16,3 +16,8 @@ Run the program:
 ```bash
 $ python day2/day2.py
 ```
+# Day 3
+Run the program:
+```bash
+$ python day3/day3.py
+```
