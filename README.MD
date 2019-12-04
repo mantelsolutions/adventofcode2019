@@ -21,3 +21,9 @@ Run the program:
 ```bash
 $ python day3/day3.py
 ```
+
+# Day 4
+Run the program:
+```bash
+$ python day4/day4.py
+```
